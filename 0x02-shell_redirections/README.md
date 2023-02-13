@@ -1,1 +1,1 @@
-learning all about I/O redirections
+this project introduces us to standard input and out put
