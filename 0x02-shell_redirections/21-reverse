@@ -1,0 +1,2 @@
+#!/bin/bash
+echo "that man is nnb" | rev
