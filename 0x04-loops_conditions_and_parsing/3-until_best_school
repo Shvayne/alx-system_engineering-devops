@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# this script prints text using until
+
+text="Best School"
+
+counter=0
+
+until [ $counter -ge 10 ]; do
+	echo "$text"
+	((counter++))
+done

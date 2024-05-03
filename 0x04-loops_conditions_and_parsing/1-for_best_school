@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+#this script prints a text 10 times
+text="Best School"
+for ((i=1; i<=10; i++)); do
+	echo "$text"
+done

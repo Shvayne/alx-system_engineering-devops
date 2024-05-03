@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+#displays text and uses if condition to prnt diff text
+
+text="Best School"
+text2="Hi"
+count=1
+
+while [ $count -le 10 ]
+do
+	echo "$text"
+	if [ $count -eq 9 ]
+	then
+		echo "$text2"
+	fi
+		((count++))
+done
