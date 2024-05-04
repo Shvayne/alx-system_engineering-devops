@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+#this script displays a text indefinitely with a sleep 2 btw
+#each iteration
+#and respond to a SIGTERM signal with another text
+
+sigterm_handle() {
+	echo "I am invincible!!!"
+	exit 0
+}
+
+trap 'sigterm_handle' SIGTERM
+while true
+do
+	echo "To infinity and beyond"
+	sleep 2
+done
