@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# fix issue with webserver
+
+service apache2 start
+
