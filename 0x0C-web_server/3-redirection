@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# A script to add some confirations to the Ngix server
+
+set -e
+
+sudo apt-get update
+sudo apt-get install -y nginx
+
+#create a configuration file for the redirection
+sudo ufw allow "Nginx HTTP"
+echo "Hello World!" | sudo tee /var/www/html/index.html
+the_str="server_name _;\n\n\tlocation \/redirect_me {\n\n\treturn 301 http:\/\/github.com;\n\t}"
+sudo sed -i "s/server_name _;/$the_str/" /etc/nginx/sites-available/default
+sudo service nginx restart

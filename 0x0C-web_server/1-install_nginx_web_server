@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# A script to install and configure nginx
+
+# Exit immefiately if a command exits with a non-zero status
+set -e
+
+#update package list and install nginx answering yes to all prompts
+apt-get update
+apt-get install -y nginx
+
+# Create the web page with the string "Hello World!"
+echo "Hello World!" > /var/www/html/index.html
+
+# ensure Nginx is listening on port 80
+sed -i 's/listen 80 default_server;/listen 80;/g' /etc/nginx/sites-available/default
+sed -i 's/listen \[::\]:0 default_server;/listen \[::\]:80;/g' /etc/nginx/sites-available/default
+
+#reload to apply the changes
+nginx -s reload
+
+#start nginx
+service nginx start
+
