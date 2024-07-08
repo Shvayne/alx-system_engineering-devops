@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# configure a new Ubuntu machine with Nginx server to include HTTP hear
+
+sudo apt-get update
+sudo apt-get install -y nginx
+sudo ufw allow "Nginx HTTP"
+echo "<h2>Hello World!</h2>" | sudo tee /var/www/html/index.html
+str = "server_name _;\n\n\tlocation \/redirect_me {\n\t\treturn 301 http:\/\/github.com;\n\t}"
+sudo sed -i "s/server_name _;/$str/" /etc/nginx/sites-available/default
+
+echo "<h5>Ceci n'est pas une page</h5>" | sudo tee /var/www/html/custom_404.html
+err = "server_name _;\n\n\terror_page 404 \/custom_404.html;\n\tlocation = \/custom_404.html {\n\t\troot \/var\/www\/html;\n\t\tinternal;\n\t}"
+sudo sed -i "s/server_name _;/$err/" /etc/nginx/sites-available/default
+
+header = "server_name _;\n\n\tadd_header X-served-By \$hostname;"
+sudo sed -i "s/server_name _;/$header/" /etc/nginx/sites-available/default
+
+sudo service nginx restart
