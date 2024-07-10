@@ -1,4 +1,5 @@
 #configure ab Nginx server to listen on port 80 and perform 301 redirects
+include stdlib
 
 package { 'nginx':
   ensure => installed
@@ -11,7 +12,7 @@ exec { 'allow_HTTP':
 
 file { 'index.html':
   ensure  => file,
-  path    => '/var/www/html/index.html",
+  path    => '/var/www/html/index.html',
   content => '<h2>Hello World!</h2>'
 }
 
