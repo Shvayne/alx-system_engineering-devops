@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# A script to install and configure nginx
+
+#update package list and install nginx answering yes to all prompts
+apt-get update
+apt-get install -y nginx
+ufw allow 'Nginx HTTP'
+echo "Hello World!" > index.html
+mv index.html /var/www/html/
+service nginx start
+
