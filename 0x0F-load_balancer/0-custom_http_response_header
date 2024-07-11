@@ -4,16 +4,26 @@
 # Update package list and install Nginx
 sudo apt-get update
 sudo apt-get install -y nginx
+
+# Allow Nginx HTTP through the firewall
 sudo ufw allow "Nginx HTTP"
+
+# Create a simple HTML page
 echo "<h2>Hello World!</h2>" | sudo tee /var/www/html/index.html
-red_str="server_name _;\n\n\tlocation \/redirect_me {\n\t\treturn 301 http:\/\/youtube.com;\n\t}"
+
+# Add a custom redirect location
+red_str="server_name _;\n\n\tlocation /redirect_me {\n\t\treturn 301 http://youtube.com;\n\t}"
 sudo sed -i "s/server_name _;/$red_str/" /etc/nginx/sites-available/default
 
+# Create a custom 404 error page
 echo "<h5>Ceci n'est pas une page</h5>" | sudo tee /var/www/html/custom_404.html
-err_str="server_name _;\n\n\terror_page 404 \/custom_404.html;\n\tlocation = \/custom_404.html {\n\t\troot \/var\/www\/html;\n\t\tinternal;\n\t}"
+err_str="server_name _;\n\n\terror_page 404 /custom_404.html;\n\tlocation = /custom_404.html {\n\t\troot /var/www/html;\n\t\tinternal;\n\t}"
 sudo sed -i "s/server_name _;/$err_str/" /etc/nginx/sites-available/default
 
+# Add the custom HTTP header
 header_str="server_name _;\n\n\tadd_header X-Served-By \$hostname;"
 sudo sed -i "s/server_name _;/$header_str/" /etc/nginx/sites-available/default
 
+# Restart Nginx to apply changes
 sudo service nginx restart
+
