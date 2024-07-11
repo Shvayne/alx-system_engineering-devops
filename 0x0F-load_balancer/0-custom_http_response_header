@@ -4,24 +4,16 @@
 # Update package list and install Nginx
 sudo apt-get update
 sudo apt-get install -y nginx
-
-# Allow HTTP traffic through the firewall
 sudo ufw allow "Nginx HTTP"
-
-# Create a simple HTML page
 echo "<h2>Hello World!</h2>" | sudo tee /var/www/html/index.html
+red_str="server_name _;\n\n\tlocation \/redirect_me {\n\t\treturn 301 http:\/\/youtube.com;\n\t}"
+sudo sed -i "s/server_name _;/$red_str/" /etc/nginx/sites-available/default
 
-# Add a 301 redirect to the Nginx default site configuration
-sudo sed -i '/server_name _;/a \\n\tlocation /redirect_me {\n\t\treturn 301 http://github.com;\n\t}' /etc/nginx/sites-available/default
-
-# Create a custom 404 page
 echo "<h5>Ceci n'est pas une page</h5>" | sudo tee /var/www/html/custom_404.html
+err_str="server_name _;\n\n\terror_page 404 \/custom_404.html;\n\tlocation = \/custom_404.html {\n\t\troot \/var\/www\/html;\n\t\tinternal;\n\t}"
+sudo sed -i "s/server_name _;/$err_str/" /etc/nginx/sites-available/default
 
-# Add custom 404 error page to the Nginx default site configuration
-sudo sed -i '/server_name _;/a \\n\terror_page 404 /custom_404.html;\n\tlocation = /custom_404.html {\n\t\troot /var/www/html;\n\t\tinternal;\n\t}' /etc/nginx/sites-available/default
+header_str="server_name _;\n\n\tadd_header X-Served-By \$hostname;"
+sudo sed -i "s/server_name _;/$header_str/" /etc/nginx/sites-available/default
 
-# Add custom HTTP header to the Nginx default site configuration
-sudo sed -i '/server_name _;/a \\n\tadd_header X-served-By $hostname;' /etc/nginx/sites-available/default
-
-# Restart Nginx to apply the changes
 sudo service nginx restart
