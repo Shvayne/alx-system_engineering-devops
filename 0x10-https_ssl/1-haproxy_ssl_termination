@@ -32,11 +32,6 @@ defaults
 	errorfile 502 /etc/haproxy/errors/502.http
 	errorfile 503 /etc/haproxy/errors/503.http
 	errorfile 504 /etc/haproxy/errors/504.http
-frontend hypotherm-frontend
-	bind *:80
-	mode http
-	default_backend hypotherm-backend
-
 frontend http_front
     bind *:80
     bind *:443 ssl crt /etc/letsencrypt/live/www.realspeak.tech/fullchain.pem
@@ -50,7 +45,7 @@ backend holberton_backend
     server web_server 127.0.0.1:80
 
 backend hypotherm-backend
-	balance roundrobin
-	server 297641-web-01 54.175.227.244:80 check
-	server 297641-web-02 54.197.129.188:80 check
+    balance roundrobin
+    server 297641-web-01 54.175.227.244:80 check
+    server 297641-web-02 54.197.129.188:80 check
 
