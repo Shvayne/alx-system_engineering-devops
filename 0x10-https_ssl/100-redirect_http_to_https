@@ -32,30 +32,19 @@ defaults
 	errorfile 502 /etc/haproxy/errors/502.http
 	errorfile 503 /etc/haproxy/errors/503.http
 	errorfile 504 /etc/haproxy/errors/504.http
-frontend hypotherm-frontend
-	bind *:80
-	mode http
-	default_backend hypotherm-backend
+frontend tiana-frontend
+        bind *:80
+        mode http
+        http-request set-header X-Forwarded-Proto http
+        redirect scheme https code 301 if !{ ssl_fc }
 
-frontend http_front
-    bind *:443 ssl crt /etc/letsencrypt/live/www.realspeak.tech/fullchain.pem
-    default_backend web_servers
+frontend tiana-frontend-https
+        bind *:443 ssl crt /etc/haproxy/certs/www.realspeak.tech.pem
+        option forwardfor
+        http-request set-header X-Forwarded-Proto https
+        default_backend tiana-backend
 
-frontend http_front
-    bind *:80
-    # Redirect HTTP to HTTPS
-    redirect scheme https code 301 if !{ ssl_fc }
-
-
-    acl is_holberton hdr_dom(host) -i www.realspeak.tech
-    use_backend holberton_backend if is_holberton
-
-
-
-backend holberton_backend
-    server web_server 127.0.0.1:80
-
-backend hypotherm-backend
+backend tiana-backend
 	balance roundrobin
 	server 297641-web-01 54.175.227.244:80 check
 	server 297641-web-02 54.197.129.188:80 check
