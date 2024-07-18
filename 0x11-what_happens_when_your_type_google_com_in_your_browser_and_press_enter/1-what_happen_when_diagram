@@ -1,0 +1,56 @@
++-------------------+                   +-----------------+
+|   User's Browser  |                   |    Internet     |
++--------+----------+                   +--------+--------+
+         |                                     |
+         |  (1) DNS Request: google.com        |
+         |------------------>  [DNS Server]    |
+         |                                     |
+         | <------------------  (IP Address)   |
+         |                                     |
++--------+----------+                   +--------+--------+
+|   User's Browser  |                   |    Internet     |
++--------+----------+                   +--------+--------+
+         |                                     |
+         |  (2) TCP/IP Handshake               |
+         |------------------>  [Google's Server|
+         |  SYN                               |
+         | <------------------  SYN-ACK        |
+         |------------------>  ACK            |
+         |                                     |
+         |  (3) Firewall Check                 |
+         |------------------>  [Firewalls]     |
+         | <------------------                 |
+         |                                     |
+         |  (4) HTTPS/SSL Handshake            |
+         |------------------>  [Google's Server|
+         |  Certificate                       |
+         | <------------------                 |
+         |  Validate Certificate               |
+         |------------------>  Session Key     |
+         |                                     |
+         |  (5) Load-Balancer                  |
+         |------------------>  [Load-Balancer] |
+         | <------------------  Optimal Server |
+         |                                     |
++--------+----------+                   +--------+--------+
+|   User's Browser  |                   | Google Data     |
++--------+----------+                   |   Center        |
+         |                                     |
+         |  (6) Web Server                     |
+         |------------------>  [Web Server]    |
+         |                                     |
+         |  (7) Application Server             |
+         |------------------>  [App Server]    |
+         |                                     |
+         |  (8) Database                       |
+         |------------------>  [Database]      |
+         | <------------------                 |
+         |                                     |
+         | <------------------                 |
+         |                                     |
+         | <------------------                 |
+         |                                     |
++--------+----------+                   +--------+--------+
+|   User's Browser  |                   | Google Data     |
+| Displays Google   |                   |   Center        |
++-------------------+                   +-----------------+
