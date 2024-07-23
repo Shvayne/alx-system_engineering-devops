@@ -1,0 +1,88 @@
+What Happens When You Type https://www.google.com in Your Browser and Press Enter?
+Have you ever wondered what goes on behind the scenes when you type “https://www.google.com" into your browser and press Enter? It might seem like magic when Google pops up almost instantly, but there’s a fascinating series of steps that happen in the blink of an eye. Let’s dive into the journey your request takes across the internet, breaking it down step-by-step, in a way that’s easy to understand.
+
+1. DNS Request: Finding Google
+
+The Domain Name System (DNS) is like the internet’s phone book. It translates human-friendly domain names (like google.com) into IP addresses (like 172.217.15.110), which computers use to identify each other on the network.
+
+What Happens?
+
+When you press Enter, your browser needs to find the IP address of google.com. It sends a request to a DNS server to get this information. This DNS server could be provided by your Internet Service Provider (ISP), or it might be a public server like Google’s own 8.8.8.8. The DNS server looks up the IP address associated with google.com and sends it back to your browser.
+
+2. TCP/IP: Establishing a Connection
+
+Transmission Control Protocol/Internet Protocol (TCP/IP) is the fundamental communication language of the internet. It ensures data is sent and received accurately between devices.
+
+What Happens?
+
+With the IP address in hand, your browser uses TCP/IP to establish a connection with Google’s server. This involves a process called the TCP handshake:
+
+Your browser sends a “SYN” (synchronize) packet to the server.
+The server responds with a “SYN-ACK” (synchronize-acknowledge) packet.
+Your browser replies with an “ACK” (acknowledge) packet.This handshake establishes a connection and ensures both your browser and the server are ready to communicate.
+3. Firewall: Ensuring Safety
+
+A firewall is like a security guard for your network. It monitors and controls incoming and outgoing network traffic based on predetermined security rules.
+
+What Happens?
+
+Your request passes through various firewalls — your computer’s firewall, your router’s firewall, your ISP’s firewall, and Google’s firewall. These firewalls check the request to ensure it’s safe and allowed to proceed.
+
+4. HTTPS/SSL: Securing the Connection
+
+HTTPS (Hypertext Transfer Protocol Secure) and SSL (Secure Sockets Layer) encrypt the data transmitted between your browser and the web server, ensuring privacy and security.
+
+What Happens?
+
+Your browser and Google’s server perform an SSL handshake to establish a secure, encrypted connection. This involves:
+
+The server sends a copy of its SSL certificate to your browser.
+Your browser checks the certificate’s validity.
+If valid, your browser creates and sends a symmetric session key to the server, encrypted with the server’s public key.
+This process ensures that any data you send (like search queries) is private and protected from eavesdroppers.
+
+5. Load-Balancer: Distributing the Load
+
+A load-balancer distributes incoming network traffic across multiple servers to ensure no single server gets overwhelmed, improving performance and reliability.
+
+What Happens?
+
+Upon reaching Google’s data center, your request hits a load-balancer. The load-balancer decides which server will handle your request based on factors like server load and response time, ensuring you get the fastest and most reliable service.
+
+6. Web Server: Serving the Content
+
+What is a Web Server?
+
+A web server is a computer that stores and serves website content, like HTML pages, images, and videos.
+
+What Happens?
+
+The chosen server receives your request and starts preparing to serve the Google homepage. It fetches the necessary HTML, CSS, JavaScript files, and other resources needed to build the page.
+
+7. Application Server: Processing the Request
+
+What is an Application Server?
+
+An application server runs applications, processes data, and performs complex tasks that go beyond simply serving static content.
+
+What Happens?
+
+Google’s application servers process your request and interact with other services to gather relevant data. If you’ve typed a search query, these servers run the logic needed to provide personalized results, ads, and more.
+
+8. Database: Fetching the Data
+
+A database stores organized data that can be easily accessed, managed, and updated.
+
+What Happens?
+
+The application servers query databases to fetch information relevant to your search. These databases are massive and highly optimized to deliver quick results.
+
+Bringing It All Together
+
+In just a fraction of a second, all these steps happen seamlessly:
+
+DNS translates google.com to an IP address then TCP/IP establishes a connection to Google’s server then its up to firewalls ensure the request is safe.
+
+HTTPS/SSL then secures the connection. while the load-Balancer distributes the request to the optimal server. The web Server serves the page content while the application Server for google processes the request and fetches data and finally the database provides the necessary information to you.
+
+The final result? The Google homepage appears on your screen, ready for you to start your search. This connection of technologies and processes happens so quickly that it feels almost magical. But now you know the technical marvel behind that seemingly simple action of typing a URL and pressing Enter.
