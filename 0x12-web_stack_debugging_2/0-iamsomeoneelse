@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 # a bash script to run the whoami command
 
-USERNAME=$1
-
-su -c "whoami" $USERNAME
+sudo -u "$1" whoami
 
