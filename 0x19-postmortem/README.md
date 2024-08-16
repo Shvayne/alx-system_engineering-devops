@@ -1,5 +1,7 @@
 # Postmorten: Nginx Server Misconfiguration
 
+![joke about coworkers](https://i.pinimg.com/564x/59/f2/a6/59f2a6cb5d7b309ab7f439c9176fa5fb.jpg)
+
 ## Issue Summary
 - **Duration:** August 16, 2024, 10:00 AM - 12:30 PM (UTC)
 - **Impact:** The entire company website was down for 2.5 hours, affecting 100% of users. CUstomers were unable to access the e-commerce platform, resulting in a complete halt in online transactions during this period.
